@@ -1,19 +1,8 @@
-const express = require("express");
-  
-const app = express();
-// создаем парсер для данных в формате json
-const jsonParser = express.json();
-  
-app.post("/user", jsonParser, function (request, response) {
-    console.log(request.body);
-    if(!request.body) return response.sendStatus(400);
+const http = require("http");
+http.createServer(function(request,response){
      
-    response.json(request.body); // отправляем пришедший ответ обратно
+    response.end("Hello NodeJS!");
+     
+}).listen(3000, "127.0.0.1",function(){
+    console.log("Сервер начал прослушивание запросов на порту 3000");
 });
-  
-app.get("/", function(request, response){
-      
-    response.sendFile(__dirname + "/index.html");
-});
-  
-app.listen(3000);
