@@ -14,7 +14,7 @@ app.use(express.static(`${__dirname}/public`));
         await mongoClient.connect();
         app.locals.collection = mongoClient.db("usersdb").collection("users");
         app.listen(3000);
-        console.log("Сервер ожидает подключения... http://localhost:3000");
+        console.log("Сервер запущен по адресу http://localhost:3000");
     }catch(err) {
         return console.log(err);
     } 
@@ -107,7 +107,6 @@ app.put("/api/users", jsonParser, async(req, res)=>{
    
 // прослушиваем прерывание работы программы (ctrl-c)
 process.on("SIGINT", async() => {
-      
     await mongoClient.close();
     console.log("Приложение завершило работу");
     process.exit();
